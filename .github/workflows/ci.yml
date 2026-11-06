@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    # Needs Xcode 26 / Swift 6.2 or later (swift-tools-version: 6.2). Pinned rather than
+    # macos-latest, which can lag behind or move on without warning.
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show Swift version
+        run: swift --version
+      - name: Test
+        run: swift test
+      - name: Build the example app
+        run: swift build
+        working-directory: Examples/LicenseDemo
