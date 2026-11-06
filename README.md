@@ -125,13 +125,16 @@ The steps that are easy to miss when adding this to an app:
 
 1. Use a test-mode product with `environment: .test` while developing, and the live product
    with `.live` in release builds (for example with `#if DEBUG`).
-2. Call `license.start()` once at launch, so rechecks happen.
-3. Gate the app on `license.isActive` (or `license.isActive || !trial.hasEnded` with a trial).
-4. Set `license.onRevoke` to tell the user why the app locked.
-5. Put a **Deactivate** button in Settings, so users can move to a new Mac on their own.
-6. Show a way to contact you. "In use on another Mac" for a Mac they no longer have can only
+2. If your app is sandboxed, turn on **Outgoing Connections (Client)** under Signing &
+   Capabilities (`com.apple.security.network.client`). Without it every activation fails as
+   "couldn't reach the license server".
+3. Call `license.start()` once at launch, so rechecks happen.
+4. Gate the app on `license.isActive` (or `license.isActive || !trial.hasEnded` with a trial).
+5. Set `license.onRevoke` to tell the user why the app locked.
+6. Put a **Deactivate** button in Settings, so users can move to a new Mac on their own.
+7. Show a way to contact you. "In use on another Mac" for a Mac they no longer have can only
    be fixed by you, in the Dodo dashboard (see below).
-7. Link to your Dodo checkout from the locked state.
+8. Link to your Dodo checkout from the locked state.
 
 ## How it behaves
 
