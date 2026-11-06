@@ -1,11 +1,5 @@
 # DodoLicense
 
-[![CI](https://github.com/lohith2406/dodo-license/actions/workflows/ci.yml/badge.svg)](https://github.com/lohith2406/dodo-license/actions/workflows/ci.yml)
-![Swift 6.2](https://img.shields.io/badge/Swift-6.2-F05138?logo=swift&logoColor=white)
-![macOS 14+](https://img.shields.io/badge/macOS-14%2B-000000?logo=apple&logoColor=white)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Follow @xLohith on X](https://img.shields.io/badge/follow-%40xLohith-000000?logo=x&logoColor=white)](https://x.com/xLohith)
-
 License keys for Mac apps sold through [Dodo Payments](https://dodopayments.com). For indie
 developers who want a paid Mac app without writing the licensing part themselves.
 
