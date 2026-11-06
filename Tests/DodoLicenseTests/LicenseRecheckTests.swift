@@ -69,6 +69,31 @@ struct LicenseRecheckTests {
         #expect(wasTold)
     }
 
+    /// Dodo turns some keys back on later: a subscription that comes off hold, or a key
+    /// re-enabled in the dashboard. If this Mac's activation still counted, entering the key
+    /// again would say "in use on another Mac" (seen on Dodo's test server, 2026-11-06).
+    @Test func aRevokedLicenseGivesBackItsActivation() async throws {
+        let license = try await activeLicense()
+        await provider.set(validate: .success(.revoked))
+        clock.advance(days: 1)
+
+        await license.refreshIfDue()
+
+        #expect(await provider.deactivated == [Activation(key: "KEY-1", instanceID: "lki_1")])
+    }
+
+    /// Giving it back is a courtesy: offline, the license still turns off.
+    @Test func aRevokedLicenseTurnsOffEvenIfGivingBackFails() async throws {
+        let license = try await activeLicense()
+        await provider.set(validate: .success(.revoked))
+        await provider.set(deactivate: .failure(.unreachable))
+        clock.advance(days: 1)
+
+        await license.refreshIfDue()
+
+        #expect(license.state == .unlicensed)
+    }
+
     @Test(arguments: [ProviderError.unreachable, .server(status: 500, message: nil), .server(status: 429, message: nil)])
     func answersThatSayNothingAboutTheKeyKeepItActive(error: ProviderError) async throws {
         let license = try await activeLicense()

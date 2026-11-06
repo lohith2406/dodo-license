@@ -141,6 +141,9 @@ The steps that are easy to miss when adding this to an app:
   check. Only a clear answer from Dodo turns the license off: the key was refunded, expired,
   or deactivated on the web. A server error, a rate limit, a firewall page or no connection
   change nothing.
+- **When a recheck turns the license off,** this Mac's activation is given back. If Dodo turns
+  the key on again later (a subscription that comes off hold, a key re-enabled in the
+  dashboard), the user just enters it again instead of hearing it's in use on another Mac.
 - **A locked Keychain** (or a denied access prompt) isn't treated as "no license". Nothing is
   deleted, and the license comes back once the Keychain can be read.
 - **Keys for other products** are refused, and the activation they used is given back.
@@ -203,7 +206,9 @@ app that uses it: `cd Examples/LicenseDemo && swift run`.
 ## What it doesn't do
 
 - Take payments. Link to your Dodo checkout for that.
-- Subscriptions, seats or copy protection.
+- Manage subscriptions or seats. Keys from a Dodo subscription do work: Dodo turns the key
+  off when the subscription goes on hold, is paused or ends, and the next recheck follows.
+- Copy protection.
 - iOS. On the App Store, StoreKit handles purchases.
 
 ---

@@ -200,6 +200,11 @@ public final class License {
         case .revoked:
             forget()
             onRevoke?()
+            // Give back this Mac's activation too. Dodo can turn a key back on later (a
+            // subscription off hold, a key re-enabled in the dashboard), and if the activation
+            // still counted, entering the key again would say it's in use on another Mac.
+            // Best effort: the license is already off whatever happens here.
+            try? await provider.deactivate(stored.activation)
         }
     }
 

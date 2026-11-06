@@ -13,3 +13,5 @@ First version.
 - A 403 HTML page from Dodo's edge (a firewall block) is an error, not "key inactive" or
   "already deactivated".
 - A Keychain that can't be read is no longer treated as "no license".
+- A recheck that turns the license off also gives back the activation, so a key that Dodo
+  turns on again (a subscription off hold, a re-enabled key) can be entered again.
